@@ -25,6 +25,17 @@ function App() {
     }
   };
 
+  //TODO : update background image according to the locations time -> currently updating based on users time
+  function isDay() {
+    let hour = new Date().getHours();
+    console.log(hour);
+    if (hour >= 6 && hour <= 18) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   const dateBuilder = (d) => {
     let months = [
       "Jan",
@@ -51,7 +62,15 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div
+      className={
+        typeof weather.main != "undefined"
+          ? isDay()
+            ? "app"
+            : "app night"
+          : "app"
+      }
+    >
       <main>
         {/* search */}
         <div className="search-box">
